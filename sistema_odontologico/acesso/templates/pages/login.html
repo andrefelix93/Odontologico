@@ -1,9 +1,10 @@
+{% extends 'partials/base-acesso.html' %}
 {% load static %}
 
 <head>
   <title>Login</title>
   {% block head %}
-  {% include 'partials/head.html' %}
+  {% include 'partials/head-acesso.html' %}
   {% endblock head %}
 </head>
 
@@ -84,22 +85,9 @@
     </div>
     {% endblock content %}
   </main><!-- End #main -->
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src={% static "vendor/apexcharts/apexcharts.min.js" %}></script>
-  <script src={% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
-  <script src={% static "vendor/chart.js/chart.umd.js" %}></script>
-  <script src={% static "vendor/echarts/echarts.min.js" %}></script>
-  <script src={% static "vendor/quill/quill.min.js" %}></script>
-  <script src={% static "vendor/simple-datatables/simple-datatables.js" %}></script>
-  <script src={% static "vendor/tinymce/tinymce.min.js" %}></script>
-  <script src={% static "vendor/php-email-form/validate.js" %}></script>
-
-  <!-- Template Main JS File -->
-  <script src={% static "js/main.js" %}></script>
-
+    {% block footer %}
+      {% include 'partials/footer.html' %}
+    {% endblock footer %}
 </body>
 
 </html>
