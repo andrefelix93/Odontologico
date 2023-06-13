@@ -5,7 +5,7 @@ from django import forms
 class CadastroForms(forms.Form):
 
     nome_cadastro=forms.CharField(
-        label="Nome Completo",
+        label="Nome",
         required=True,
         max_length=100,
         widget=forms.TextInput(
