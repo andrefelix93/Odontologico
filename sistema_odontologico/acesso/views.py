@@ -8,6 +8,37 @@ from django.contrib import auth
 
 from django.contrib import messages
 
+
+def cadastro(request):
+    form = CadastroForms()
+
+    if request.method == 'POST':
+        form = CadastroForms(request.POST)
+
+        if form.is_valid():
+
+            nome=form['nome_cadastro'].value()
+            usuario_login=form['usuario_login'].value()
+            email=form['email'].value()
+            senha=form['senha1'].value()
+
+            if User.objects.filter(username=nome).exists():
+                    messages.error(request, "Usuário já existente")
+                    return redirect('acesso:cadastro')
+
+            usuario = User.objects.create_user(
+                first_name=nome,
+                username=usuario_login,
+                email=email,
+                password=senha
+            )
+            usuario.save()
+            messages.success(request, "Cadastro efetuado com sucesso!")
+            return redirect('acesso:login')
+
+
+    return  render(request, "pages/register.html", {"form": form})
+
 def login(request):
     form = LoginForms()
 
@@ -32,32 +63,3 @@ def login(request):
             return redirect('login')
 
     return render(request, "pages/login.html", {"form": form})
-
-
-def cadastro(request):
-    form = CadastroForms()
-
-    if request.method == 'POST':
-        form = CadastroForms(request.POST)
-
-        if form.is_valid():
-
-            nome=form['nome_cadastro'].value()
-            email=form['email'].value()
-            senha=form['senha1'].value()
-
-            if User.objects.filter(username=nome).exists():
-                    messages.error(request, "Usuário já existente")
-                    return redirect('acesso:cadastro')
-
-            usuario = User.objects.create_user(
-                username=nome,
-                email=email,
-                password=senha
-            )
-            usuario.save()
-            messages.success(request, "Cadastro efetuado com sucesso!")
-            return redirect('login')
-
-
-    return  render(request, "pages/register.html", {"form": form})

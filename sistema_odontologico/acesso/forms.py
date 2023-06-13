@@ -5,13 +5,24 @@ from django import forms
 class CadastroForms(forms.Form):
 
     nome_cadastro=forms.CharField(
-        label="Nome de Cadastro",
+        label="Nome Completo",
         required=True,
         max_length=100,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control form-label",
-                "placeholder": "Ex.: João Silva"
+                
+            }
+        )
+    )
+    usuario_login=forms.CharField(
+        label="Usuário",
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control form-label",
+                
             }
         )
     )
@@ -22,7 +33,7 @@ class CadastroForms(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 "class": "form-control form-label",
-                "placeholder": "Ex.: joaosilva@xpto.com"
+                
             }
         )
     )
@@ -33,7 +44,7 @@ class CadastroForms(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control form-label",
-                "placeholder": "Digite Sua Senha"
+                
             }
         )
     )
@@ -44,7 +55,7 @@ class CadastroForms(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control form-label",
-                "placeholder": "Confirme Sua Senha"
+                
             }
         )
     )
