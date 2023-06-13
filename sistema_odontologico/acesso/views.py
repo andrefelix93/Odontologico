@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from usuarios.forms import LoginForms,CadastroForms
+from acesso.forms import CadastroForms
 
 from django.contrib.auth.models import User
 
@@ -35,7 +35,7 @@ def cadastro(request):
             return redirect('login')
 
 
-    return  render(request, "usuarios/cadastro.html", {"form": form})
+    return  render(request, "pages/register.html", {"form": form})
 
 def logout(request):
     auth.logout(request)

@@ -37,39 +37,16 @@
                     <p class="text-center small">Preencha os campos pra criar o cadastro</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Seu nome</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Por favor, informe seu nome!</div>
+                  <form class="row g-3 needs-validation" novalidate  action="{% url 'acesso:login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="col-12 form-group">
+                      {% for field in form.visible_fields %}
+                      <label for="{{ field.id_for_label }}">{{field.label}}</label>
+                      {{ field }}
+                      {% endfor %}
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourEmail" class="form-label">Seu Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Por favor, informe um Email válido!</div>
-                    </div>
 
-                    <div class="col-12">
-                      <label for="yourUsername" class="form-label">Usuário</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Por favor escolha um Usuário válido.</div>
-                      </div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Senha</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Digite sua Senha!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Confirme a Senha</label>
-                      <input type="password2" name="password2" class="form-control" id="yourPassword2" required>
-                      <div class="invalid-feedback">A senha está diferente!</div>
-                    </div>
 
                     <div class="col-12">
                       <div class="form-check">
