@@ -57,9 +57,13 @@ def login(request):
         if usuario is not None:
             auth.login(request, usuario)
             messages.success(request, f" Usuário {nome} logado com sucesso!")
-            return redirect('index')
+            return redirect('home')
         else:
             messages.error(request, "Erro ao efetuar login")
             return redirect('login')
 
     return render(request, "pages/login.html", {"form": form})
+
+def home(request):
+    pass
+    return redirect('acesso:home')
