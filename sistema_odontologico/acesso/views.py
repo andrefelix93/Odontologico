@@ -19,7 +19,7 @@ def cadastro(request):
 
             if User.objects.filter(username=nome).exists():
                     messages.error(request, "Usuário já existente")
-                    return redirect('acesso:cadastro')
+                    return redirect('acesso:login')
 
             usuario = User.objects.create_user(
                 first_name=nome,
@@ -41,21 +41,21 @@ def login(request):
         form = LoginForms(request.POST)
 
         if form.is_valid():
-            nome=form['nome_login'].value()
+            nome=form['usuario_login'].value()
             senha=form['senha'].value()
 
-        usuario = auth.authenticate(
-            request,
-            username=nome,
-            password=senha
-        )
-        if usuario is not None:
-            auth.login(request, usuario)
-            messages.success(request, f" Usuário {nome} logado com sucesso!")
-            return redirect('home')
-        else:
-            messages.error(request, "Erro ao efetuar login")
-            return redirect('login')
+            usuario = auth.authenticate(
+                request,
+                username=nome,
+                password=senha
+            )
+            if usuario is not None:
+                auth.login(request, usuario)
+                messages.success(request, f" Usuário {nome} logado com sucesso!")
+                return redirect('home')
+            else:
+                messages.error(request, "Erro ao efetuar login")
+                return redirect('login')
 
     return render(request, "pages/login.html", {"form": form})
 
