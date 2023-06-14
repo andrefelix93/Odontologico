@@ -14,7 +14,7 @@
   
   {% block content %}
     <div class="pagetitle">
-      <h1>Blank Page</h1>
+      <h1>Pacientes</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -26,16 +26,31 @@
 
     <section class="section">
       <div class="row">
-        <div class="col-lg-12">
-
+        <div class="col-lg-5">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+              <h5 class="card-title">Buscar Paciente</h5>
+              <!-- Custom Styled Validation -->
+              <form class="row g-3 needs-validation" novalidate="">
+                <div class="col-md-10">
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Nome do Paciente</label>
+                  </div>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary col-3" type="submit">Buscar</button>
+                  <button class="btn btn-primary col-3" type="submit">Cadastrar</button>
+                </div>
+              </form><!-- End Custom Styled Validation -->
+
             </div>
           </div>
-
         </div>
+      </div>
     </section>
   {% endblock content %}
 
