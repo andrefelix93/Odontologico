@@ -1,12 +1,7 @@
-from django.shortcuts import render, redirect
-
 from acesso.forms import CadastroForms, LoginForms
-
+from django.contrib import auth, messages
 from django.contrib.auth.models import User
-
-from django.contrib import auth
-
-from django.contrib import messages
+from django.shortcuts import redirect, render
 
 
 def cadastro(request):
@@ -64,6 +59,11 @@ def login(request):
 
     return render(request, "pages/login.html", {"form": form})
 
+def logout(request):
+    auth.logout(request)
+    messages.success(request, "Usúario deslogado")
+    return redirect('login')
+
 def home(request):
-    pass
-    return redirect('acesso:home')
+    
+    return render(request, "pages/index.html")
