@@ -41,8 +41,8 @@ def login(request):
         form = LoginForms(request.POST)
 
         if form.is_valid():
-            nome=form['usuario_login'].value()
-            senha=form['senha'].value()
+            nome=form.cleaned_data['username']
+            senha=form.cleaned_data['password']
 
             usuario = auth.authenticate(
                 request,
@@ -57,7 +57,7 @@ def login(request):
                 messages.error(request, "Erro ao efetuar login")
                 return redirect('login')
 
-    return render(request, "pages/login.html", {"form": form})
+    return render(request, "pages/index.html", {"form": form})
 
 def logout(request):
     auth.logout(request)
@@ -65,5 +65,7 @@ def logout(request):
     return redirect('login')
 
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('acesso:login')
     
     return render(request, "pages/index.html")
