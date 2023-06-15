@@ -1,5 +1,6 @@
 import unidecode
 from django import forms
+from django.contrib.auth.models import User
 
 
 class CadastroForms(forms.Form):
@@ -79,6 +80,10 @@ class CadastroForms(forms.Form):
                 raise forms.ValidationError("As senhas digitadas são diferentes e precisam ser iguais")
             else:
                 return senha_2
+            
+    class Meta:
+        model = User
+        fields = ('username', 'password', 'email', 'first_name')        
             
 class LoginForms(forms.Form):
 

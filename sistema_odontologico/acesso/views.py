@@ -20,13 +20,13 @@ def cadastro(request):
             if User.objects.filter(username=nome).exists():
                     messages.error(request, "Usuário já existente")
                     return redirect('acesso:login')
-
+            
             usuario = User.objects.create_user(
-                first_name=nome,
-                username=usuario_login,
-                email=email,
-                password=senha
-            )
+                    first_name=nome,
+                    username=usuario_login,
+                    email=email,
+                    password=senha
+                )
             usuario.save()
             messages.success(request, "Cadastro efetuado com sucesso!")
             return redirect('acesso:login')
