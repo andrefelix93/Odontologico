@@ -3,6 +3,7 @@
 
 {% block head %}
     {% include 'partials/head.html' %}
+    <title>Cadastro Paciente</title>
     {% include 'partials/header.html' %}
 {% endblock head %}
 
@@ -13,7 +14,7 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Floating labels Form</h5>
+      <h5 class="card-title">Cadastro de Pacientes</h5>
 
       <!-- Floating Labels Form -->
       <form class="row g-3" action="{% url 'paciente:cadastro-paciente' %}" method="POST">
@@ -21,7 +22,7 @@
           <div class="form-floating">
             <input class="form-control" id="floatingName" placeholder="Your Name">
             <label for="floatingName">Nome</label>
-            
+
           </div>
         </div>
         <div class="col-md-6">
