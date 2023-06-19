@@ -1,4 +1,5 @@
 from django import forms
+from paciente.models import Paciente
 
 
 class CadastroPacienteForms(forms.Form):
@@ -31,35 +32,50 @@ class CadastroPacienteForms(forms.Form):
         ("M", "Masculino"),
         )
 
-        sexo = forms.CharField(
+        sexo = forms.ChoiceField(
                 label = "Sexo",
                 choices = SEXO_CHOICES,
-                max_length = 1,
-                blank = False,
-                null = False,
+                required = True,
         )
 
         data_nascimento_paciente = forms.DateField(
                 label = "Data de Nascimento",
-                placeholder = "Data de Nascimento",
                 required = True,
-                max_length = 100,
         )
 
         cpf_paciente = forms.CharField(
                 label = "CPF",
-                placeholder = "CPF",
                 max_length=14, 
-                blank=False, 
-                null=False
+                required = True, 
+                widget = forms.TextInput(
+                    attrs = {
+                        "class": "form-control form-label",
+                    }
+                )
         )
         
         telefone_celular_paciente = forms.CharField(
                 label = "Celular do Paciente",
-                placeholder = "Celular do Paciente",
                 max_length=15, 
-                blank=False, 
-                null=False
+                required = True, 
+                widget = forms.TextInput(
+                    attrs = {
+                        "class": "form-control form-label",
+                    }
+                )
         )
 
+        class Meta:
+                # Modelo base
+                model = Paciente
+
+                # Campos que estarão no form
+                fields = [
+                        'nome_paciente',
+                        'email_paciente',
+                        'sexo',
+                        'data_nascimento_paciente',
+                        'cpf_paciente',
+                        'telefone_celular_paciente',
+                ]
         
