@@ -2,6 +2,8 @@ from acesso.forms import CadastroForms, LoginForms
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from paciente.forms import CadastroPacienteForms
+from paciente.models import Paciente
 
 
 def cadastro(request):
@@ -71,4 +73,35 @@ def home(request):
     return render(request, "pages/index.html")
 
 def cadastro_paciente(request):
-    return render(request, "pages/register_pacient.html")
+    form = CadastroPacienteForms()
+
+    if request.method == 'POST':
+        form = CadastroPacienteForms(request.POST)
+
+        if form.is_valid():
+
+            nome=form['nome_paciente'].value()
+            email=form['email_paciente'].value()
+            sexo=form['sexo'].value()
+            data_nascimento=form['data_nascimento_paciente'].value()
+            cpf=form['cpf_paciente'].value()
+            telefone_celular=form['telefone_celular_paciente'].value()
+
+            if Paciente.objects.filter(cpf_paciente=cpf).exists():
+                    messages.error(request, "Paciente já cadastrado.")
+                    return redirect('home')
+            
+            paciente = Paciente.objects.create(
+                    nome_paciente=nome,
+                    sexo=sexo,
+                    cpf_paciente=cpf,
+                    email=email,
+                    data_nascimento_paciente=data_nascimento,
+                    telefone_celular_paciente=telefone_celular,
+                )
+            paciente.save()
+            messages.success(request, "Paciente cadastrado com sucesso!")
+            return redirect('home')
+
+
+    return  render(request, "pages/register_pacient.html", {"form": form})
