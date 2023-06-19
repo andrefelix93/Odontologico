@@ -69,3 +69,6 @@ def home(request):
         return redirect('acesso:login')
     
     return render(request, "pages/index.html")
+
+def cadastro_paciente(request):
+    return render(request, "pages/register_pacient.html")
