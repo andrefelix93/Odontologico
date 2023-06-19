@@ -7,12 +7,6 @@ class CadastroPacienteForms(forms.Form):
                 label = "Nome",
                 required = True,
                 max_length = 100,
-                widget = forms.TextInput(
-                    attrs = {
-                        "class": "form-control form-label",
-                        
-                    }
-                )
         )
 
         email_paciente = forms.EmailField(
@@ -36,6 +30,7 @@ class CadastroPacienteForms(forms.Form):
                 label = "Sexo",
                 choices = SEXO_CHOICES,
                 required = True,
+                widget = forms.RadioSelect,
         )
 
         data_nascimento_paciente = forms.DateField(

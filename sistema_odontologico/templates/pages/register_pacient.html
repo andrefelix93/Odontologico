@@ -19,8 +19,9 @@
       <form class="row g-3" action="{% url 'paciente:cadastro-paciente' %}" method="POST">
         <div class="col-md-12">
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-            <label for="floatingName">{{ form.nome_paciente }}</label>
+            <input class="form-control" id="floatingName" placeholder="Your Name">
+            <label for="floatingName">Nome</label>
+            
           </div>
         </div>
         <div class="col-md-6">
