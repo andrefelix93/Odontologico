@@ -1,6 +1,7 @@
 from acesso.forms import CadastroForms, LoginForms
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from paciente.forms import CadastroPacienteForms
 from paciente.models import Paciente
@@ -81,15 +82,15 @@ def cadastro_paciente(request):
         if form.is_valid():
 
             nome=form['nome_paciente'].value()
-            email=form['email_paciente'].value()
+            email=form['email'].value()
             sexo=form['sexo'].value()
             data_nascimento=form['data_nascimento_paciente'].value()
             cpf=form['cpf_paciente'].value()
             telefone_celular=form['telefone_celular_paciente'].value()
 
             if Paciente.objects.filter(cpf_paciente=cpf).exists():
-                    messages.error(request, "Paciente já cadastrado.")
-                    return redirect('home')
+                    return HttpResponse('Já cadastrado!')
+                   
             
             paciente = Paciente.objects.create(
                     nome_paciente=nome,
