@@ -3,7 +3,6 @@ from paciente.models import Paciente
 
 
 class CadastroPacienteForms(forms.ModelForm):
-        data_nascimento_pacientewidget=forms.DateInput(format='%d/%m/%Y')
         class Meta:
                 # Modelo base
                 model = Paciente

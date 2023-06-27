@@ -20,7 +20,6 @@
       <form class="row g-3" action="{% url 'paciente:cadastro-paciente' %}" method="POST">
           {% csrf_token %}
           <table>
-            {{ 'data_nascimento_paciente'|date:"%d/%m/%Y" }}
             {{form.as_table}}
         </table>
           <div class="text-center mt-2">
