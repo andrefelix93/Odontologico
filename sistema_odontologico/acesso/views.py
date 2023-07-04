@@ -33,6 +33,7 @@ def cadastro(request):
             usuario.save()
             messages.success(request, "Cadastro efetuado com sucesso!")
             return redirect('acesso:login')
+        
 
 
     return  render(request, "pages/register.html", {"form": form})
@@ -101,8 +102,10 @@ def cadastro_paciente(request):
                     telefone_celular_paciente=telefone_celular,
                 )
             paciente.save()
-            messages.success(request, "Paciente cadastrado com sucesso!")
-            return redirect('home')
+            #messages.success(request, "Paciente cadastrado com sucesso!")
+            return HttpResponse(' cadastrado!')
+        else:
+            return HttpResponse(' ERRO!')
 
 
     return  render(request, "pages/register_pacient.html", {"form": form})

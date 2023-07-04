@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block head %}
     {% include 'partials/head.html' %}
@@ -13,24 +14,58 @@
 
 {% block content %}
 <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Cadastro de Pacientes</h5>
+  <div class="card-body">
+    <h5 class="card-title">Cadastro do Paciente</h5>
 
-      <!-- Floating Labels Form -->
-      <form class="row g-3" action="{% url 'paciente:cadastro-paciente' %}" method="POST">
-          {% csrf_token %}
-          <table>
-            {{form.as_table}}
-        </table>
-          <div class="text-center mt-2">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-secondary">Reset</button>
+    <!-- Floating Labels Form -->
+    <form class="row g-3" action="{% url 'paciente:cadastro-paciente' %}" method="POST" >
+      {% csrf_token %}
+      <div class="col-md-12">
+        <div class="form-floating">
+          {% render_field form.nome_paciente type="text" class="form-control" id="nome_paciente" placeholder="Your Name" %}
+          <label for="nome_paciente">Nome do Paciente</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          {% render_field form.email type="email" class="form-control" id="email" placeholder="Your Email" %}
+          <label for="email">Email do Paciente</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+            {% render_field form.data_nascimento_paciente type="date" class="form-control" id="data_nascimento_paciente" placeholder="Data de Nascimento" %}
+          <label for="data_nascimento_paciente">Data de Nascimento</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <div class="form-floating">
+            {% render_field form.cpf_paciente type="text" class="form-control" id="cpf_paciente" placeholder="CPF" %}
+            <label for="cpf_paciente">CPF</label>
           </div>
-        
-      </form><!-- End floating Labels Form -->
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          {% render_field form.telefone_celular_paciente type="text" class="form-control" id="telefone_celular_paciente" placeholder="Telefone" %}
+          <label for="telefone_celular_paciente">Telefone</label>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-floating mb-3">
+            {% render_field form.sexo type="text" class="form-select" id="sexo" aria-label="Sexo"%}
+          <label for="sexo">Sexo</label>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+      </div>
+    </form><!-- End floating Labels Form -->
 
-    </div>
   </div>
+</div>
 {% endblock content %}
 
  

@@ -20,7 +20,7 @@ class Paciente(models.Model):
     )
 
     nome_paciente = models.CharField(max_length=100, null=False, blank=False)
-    sexo = models.CharField(max_length=1, choices=SEXO_CHOICES, blank=False, null=False)
+    sexo = models.CharField(max_length=1, choices=SEXO_CHOICES)
     data_nascimento_paciente = models.CharField(
         verbose_name='Data de Nascimento',
         max_length=10,
