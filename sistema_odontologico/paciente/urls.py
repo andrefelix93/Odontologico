@@ -1,5 +1,5 @@
-from acesso import views
 from django.urls import path
+from paciente import views
 
 app_name = 'paciente'
 
