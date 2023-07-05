@@ -40,3 +40,10 @@ def cadastro_paciente(request):
 
 
     return  render(request, "pages/register_pacient.html", {"form": form})
+
+
+def buscar_paciente(request):
+     paciente = Paciente.objects.filter()
+     return render(request, 'pages/index.html', context={
+                'paciente': paciente,
+        })
